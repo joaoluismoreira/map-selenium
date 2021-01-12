@@ -27,7 +27,7 @@ public class GoogleMapsPage {
     WebElement resultHeader;
 
     @FindBy(css = "*[class*=section-action-chip-button]")
-    List<WebElement> directionsButton;
+    List<WebElement> actionButtonsList;
 
     @FindBy(css = "#sb_ifc52>.tactile-searchbox-input")
     WebElement destinationBox;
@@ -69,7 +69,8 @@ public class GoogleMapsPage {
     }
 
     public void clickOnDirectionsButton() {
-        directionsButton.get(0).click();
+        wait.until(ExpectedConditions.visibilityOf(actionButtonsList.get(0)));
+        actionButtonsList.get(0).click();
     }
 
     public String resultHeaderText() {
