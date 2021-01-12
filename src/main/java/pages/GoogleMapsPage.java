@@ -12,13 +12,11 @@ import java.util.List;
 
 public class GoogleMapsPage {
 
-    //Page URL
     private WebDriver driver;
-    private static String PAGE_URL="https://www.google.com/maps";
     private WebDriverWait wait;
+    private static String PAGE_URL="https://www.google.com/maps";
 
 
-    //Locators
     @FindBy(id = "searchboxinput")
     WebElement searchBox;
 
@@ -34,11 +32,14 @@ public class GoogleMapsPage {
     @FindBy(css = "#sb_ifc52>.tactile-searchbox-input")
     WebElement destinationBox;
 
-    //Constructor
     public GoogleMapsPage(WebDriver webDriver){
         this.driver = webDriver;
         this.wait = new WebDriverWait(driver, 10);
         PageFactory.initElements(driver, this);
+    }
+
+    public String pageTitle(){
+        return driver.getTitle();
     }
 
     public void openPage() {
@@ -60,9 +61,7 @@ public class GoogleMapsPage {
 
 
     public void typeInSearchBox(){
-
         searchBox.sendKeys("Dublin");
-
     }
 
     public void clickOnSearchButton() {
@@ -79,6 +78,7 @@ public class GoogleMapsPage {
     }
 
     public String directionsBoxText() {
+        wait.until(ExpectedConditions.visibilityOf(destinationBox));
         return destinationBox.getAttribute("aria-label");
     }
 }

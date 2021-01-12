@@ -12,6 +12,7 @@ public class MapsTest {
     @Before
     public void setup(){
         mapsPage.openWithoutCookieConsent();
+        Assert.assertEquals("Google Maps", mapsPage.pageTitle());
     }
 
     @Test
